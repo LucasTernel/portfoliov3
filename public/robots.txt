@@ -1,0 +1,24 @@
+User-agent: *
+# 1. AUTORISER LE PUBLIC
+Allow: /
+Allow: /sitemap.xml
+
+# 2. BLOQUER L'ADMINISTRATION (Sécurité SEO)
+# On empêche Google de voir le dashboard et le formulaire de login
+Disallow: /admin-lt/
+Disallow: /login
+Disallow: /register
+Disallow: /password/reset
+
+# 3. GESTION DES IMAGES PROJETS
+# On bloque l'accès aux dossiers des projets...
+Disallow: /images/projects/
+
+# ... MAIS on autorise spécifiquement les fichiers contenant "thumb" ou "miniature"
+# Cela oblige à avoir le mot "thumb" dans le nom de ton image de couverture.
+Allow: /images/projects/*thumb*
+Allow: /images/projects/*miniature*
+
+# Optionnel : Bloquer les fichiers systèmes ou temporaires
+Disallow: /storage/*.log
+Disallow: /.env
