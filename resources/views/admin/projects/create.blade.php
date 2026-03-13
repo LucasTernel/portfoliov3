@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Créer un projet - Lucas Ternel')
+
 @section('content')
 <div class="admin-content-wrapper center-content">
     
@@ -63,8 +65,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Autre Vidéo (Démo)</label>
-                    <input type="url" name="link_video" class="admin-input" placeholder="Lien vidéo supplémentaire...">
+                    <label>Lien Maquette Figma</label>
+                    <input type="url" name="link_video" class="admin-input" placeholder="Lien Maquette Figma">
                 </div>
             </div>
 

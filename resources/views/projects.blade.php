@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Mes Projets - Lucas Ternel')
+
 @section('content')
 
     <div class="projects-screen-wrapper">
@@ -41,7 +43,7 @@
                          data-name="{{ strtolower($project->title) }}">
                         
                         <div class="card-image-header"
-                             style="background-image: url('{{ Vite::asset('resources/images/projects/' . $project->folder_name . '/' . $project->thumbnail) }}')">
+                             style="background-image: url('{{ asset('images/projects/' . $project->folder_name . '/' . $project->thumbnail) }}')">
                         </div>
 
                         <div class="card-content-bottom">

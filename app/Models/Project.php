@@ -11,14 +11,14 @@ class Project extends Model
 
     protected $fillable = [
     'title', 'subtitle', 'category', 'short_description', 'description', 
-    'technologies', 'collaborators', // <--- Ajoute ça
-    'link_github', 'link_live', 'link_drive', 'link_video_intro', 'link_video', // <--- Ajoute ça
+    'technologies', 'collaborators',
+    'link_github', 'link_live', 'link_drive', 'link_video_intro', 'link_video',
     'folder_name', 'thumbnail', 'gallery'
 ];
 
 protected $casts = [
     'technologies' => 'array',
-    'collaborators' => 'array', // <--- Ajoute ça pour que Laravel gère le JSON
+    'collaborators' => 'array',
     'gallery' => 'array',
 ];
 }

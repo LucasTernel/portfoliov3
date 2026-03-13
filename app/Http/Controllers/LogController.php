@@ -7,15 +7,12 @@ use Illuminate\Http\Request;
 
 class LogController extends Controller
 {
-    // 1. AFFICHER LA LISTE
     public function index()
     {
-        // On récupère les logs du plus récent au plus vieux, avec pagination (20 par page)
         $logs = ActivityLog::with('user')->latest()->paginate(20);
         return view('admin.logs.index', compact('logs'));
     }
 
-    // 2. EXPORTER EN CSV
     public function export()
     {
         $fileName = 'logs_site_' . date('Y-m-d_H-i') . '.csv';

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Éditer une expérience - Lucas Ternel')
+
 @section('content')
 <div class="admin-content-wrapper">
     
@@ -36,7 +38,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label style="display: block; color: #D6F32F; margin-bottom: 8px; font-weight: bold;">Dossier</label>
+                    <label style="display: block; color: #D6F32F; margin-bottom: 8px; font-weight: bold;">Dossier (Nom du dossier dans public/images/experiences/)</label>
                     <input type="text" name="folder_name" value="{{ old('folder_name', $experience->folder_name) }}" 
                            style="width: 100%; background: #1a1a1a; border: 1px solid #444; color: white; padding: 12px; border-radius: 8px;" required>
                 </div>
@@ -48,7 +50,7 @@
             </div>
 
             <div class="form-group" style="margin-bottom: 25px;">
-                <label style="display: block; color: #D6F32F; margin-bottom: 8px; font-weight: bold;">Points clés</label>
+                <label style="display: block; color: #D6F32F; margin-bottom: 8px; font-weight: bold;">Points clés (Une ligne par point)</label>
                 <textarea name="liste" rows="6" style="width: 100%; background: #1a1a1a; border: 1px solid #444; color: white; padding: 12px; border-radius: 8px; resize: vertical;">{{ old('liste', is_array($experience->liste) ? implode("\n", $experience->liste) : '') }}</textarea>
             </div>
 
@@ -64,8 +66,10 @@
                                 <div style="position: relative; border: 1px solid #444; padding: 2px; border-radius: 6px;">
                                     <input type="checkbox" name="delete_images[]" value="{{ $img }}" 
                                            style="position: absolute; top: -5px; right: -5px; accent-color: #ff4d4d; z-index: 2; cursor: pointer;">
-                                    <img src="{{ Vite::asset('resources/images/experiences/' . $experience->folder_name . '/' . $img) }}" 
-                                         style="width: 100%; height: 60px; object-fit: cover; border-radius: 4px;">
+                                    
+                                    <img src="{{ asset('images/experiences/' . $experience->folder_name . '/' . $img) }}" 
+                                         style="width: 100%; height: 60px; object-fit: cover; border-radius: 4px;"
+                                         alt="Image expérience">
                                 </div>
                             @endforeach
                         </div>

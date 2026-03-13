@@ -54,7 +54,7 @@
         });
     }
 
-    navbar-container.forEach(link => {
+    navLinks.forEach(link => {
         link.addEventListener('click', () => {
             if(burger) burger.classList.remove('open');
             if(nav) nav.classList.remove('active');

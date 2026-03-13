@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\SettingsSeeder;
+use Database\Seeders\PortfolioSeeder;
 use Illuminate\Support\Facades\Hash; // On utilise Hash pour la sécurité
 
 class DatabaseSeeder extends Seeder
@@ -26,6 +27,9 @@ class DatabaseSeeder extends Seeder
         ]);
         
         // N'oublie pas d'appeler le seeder des Settings s'il existe
-        $this->call(SettingsSeeder::class);
+        $this->call([
+            SettingsSeeder::class,
+            PortfolioSeeder::class
+        ]);
     }
 }

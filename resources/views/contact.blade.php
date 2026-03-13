@@ -18,7 +18,7 @@
 
             <div class="info-row">
                 <span>📧</span>
-                <a href="mailto:contact@lucasternel.com" style="color:white; text-decoration:none; border-bottom:1px solid #333;">contact@lucasternel.com</a>
+                <a href="mailto:{{ $info->email }}" style="color:white; text-decoration:none; border-bottom:1px solid #333;">contact@lucasternel.com</a>
             </div>
             
             <div class="info-row">

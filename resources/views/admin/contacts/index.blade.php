@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Voir les messages - Lucas Ternel')
+
 @section('content')
 <div class="admin-content-wrapper">
     <h1 class="admin-page-title">Messagerie</h1>

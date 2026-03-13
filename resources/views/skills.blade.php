@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Mes Skills - Lucas Ternel')
+
 @section('content')
 
     <div class="skills-page-wrapper">

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'A propos de Moi - Lucas Ternel')
+
+
 @section('content')
 
     <div class="about-screen-wrapper">

@@ -1,9 +1,32 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login | Lucas Ternel</title>
+
+    @if(isset($globalSettings) && !empty($globalSettings->ga_tracking_id))
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ $globalSettings->ga_tracking_id }}"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '{{ $globalSettings->ga_tracking_id }}');
+        </script>
+    @endif
+    
+    <title>Admin | Lucas Ternel</title>
+    <meta name="description" content="@yield('description', 'Portfolio de Lucas Ternel, Développeur Web spécialisé Laravel. Création de sites sur mesure, vitrines et e-commerce.')">
+    <meta name="author" content="Lucas Ternel">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://lucasternel.com/">
+
+
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicons/favicon.svg') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicons/favicon-96x96.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicons/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/favicons/web-app-manifest-192x191.png') }}">
+    <link rel="manifest" href="{{ asset('favicons/site.webmanifest') }}">
+
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -167,7 +190,7 @@
 
         <header class="site-header">
             <div class="logo">
-                <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="Logo Lucas Ternel">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo Lucas Ternel">
             </div>
         </header>
 

@@ -1,7 +1,7 @@
 User-agent: *
-# 1. AUTORISER LE PUBLIC
 Allow: /
 Allow: /sitemap.xml
+Sitemap: https://lucasternel.com/sitemap.xml
 
 # 2. BLOQUER L'ADMINISTRATION (Sécurité SEO)
 # On empêche Google de voir le dashboard et le formulaire de login

@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # --- PARTIE 1 : REDIRECTION FORCEE (Pour retirer /public/ de l'URL) ---
+    # Si l'URL demandée contient "public/", on le retire et on redirige
+    RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
+    RewriteRule ^public/(.*)$ https://%{HTTP_HOST}/$1 [R=301,L,NE]
+
+    # --- PARTIE 2 : ROUTAGE INTERNE (Pour Laravel) ---
+    # On redirige tout le reste vers le dossier public sans changer l'URL affichée
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L,QSA]
+</IfModule>

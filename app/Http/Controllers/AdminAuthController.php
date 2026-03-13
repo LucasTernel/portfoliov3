@@ -8,13 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminAuthController extends Controller
 {
-    // Affiche le formulaire de login
     public function showLoginForm()
     {
         return view('admin.login');
     }
 
-    // Traite la connexion
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -24,8 +22,10 @@ class AdminAuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            return redirect()->intended(route('admin.dashboard'));
+        }
 
-            // Redirection vers le dashboard admin
+        if (Auth::check()) {
             return redirect()->intended(route('admin.dashboard'));
         }
 
@@ -34,7 +34,6 @@ class AdminAuthController extends Controller
         ])->onlyInput('email');
     }
 
-    // Déconnexion
     public function logout(Request $request)
     {
         Auth::logout();
@@ -45,12 +44,8 @@ class AdminAuthController extends Controller
     }
     public function index()
     {
-        // On récupère les vrais chiffres
         $projectsCount = \App\Models\Project::count();
-
-        // Si tu n'as pas encore de table contacts, mets 0 ou remplace par Contact::count()
         $contactsCount = 0; 
-        // $contactsCount = Contact::where('is_read', false)->count(); // Exemple pour les non-lus
 
         return view('admin.dashboard', compact('projectsCount', 'contactsCount'));
     }

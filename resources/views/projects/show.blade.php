@@ -1,10 +1,13 @@
 @extends('layouts.app')
+@section('title', $project->title . ' - Projet')
+@section('description', 'Découvrez le projet ' . $project->title . '. ' . Str::limit(strip_tags($project->description), 150))
+
 
 @section('content')
 
 <div class="project-hero">
     @if($project->thumbnail)
-        <img src="{{ Vite::asset('resources/images/projects/' . $project->folder_name . '/' . $project->thumbnail) }}" 
+        <img src="{{ asset('images/projects/' . $project->folder_name . '/' . $project->thumbnail) }}" 
              alt="{{ $project->title }}" class="hero-bg">
     @endif
     <div class="hero-overlay"></div>
@@ -79,7 +82,7 @@
                 {{-- Vidéo Démo --}}
                 @if($project->link_video)
                     <a href="{{ $project->link_video }}" target="_blank" class="btn-link-secondary">
-                        <i class="fas fa-video"></i> Démo Vidéo
+                        <i class="fa-brands fa-figma"></i> Voir la Maquette
                     </a>
                 @endif
 
@@ -104,7 +107,7 @@
                 <div class="public-gallery-grid">
                     @foreach($project->gallery as $img)
                         <div class="gallery-img-wrapper">
-                            <img src="{{ Vite::asset('resources/images/projects/' . $project->folder_name . '/' . $img) }}" 
+                            <img src="{{ asset('images/projects/' . $project->folder_name . '/' . $img) }}" 
                                  alt="Galerie {{ $project->title }}" loading="lazy">
                         </div>
                     @endforeach

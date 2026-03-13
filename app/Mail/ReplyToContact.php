@@ -23,23 +23,18 @@ class ReplyToContact extends Mailable
         $this->replyMessage = $replyMessage;
     }
 
-    /* * 1. L'ENVELOPPE (Sujet + Expéditeur)
-     */
     public function envelope(): Envelope
     {
         return new Envelope(
-            // Ici on définit l'expéditeur et le sujet dynamique
             from: new Address('contact@lucasternel.com', 'Lucas Ternel'),
             subject: 'Réponse à : ' . ($this->contact->subject ?? 'Votre demande'),
         );
     }
 
-    /* * 2. LE CONTENU (On pointe vers ta vue HTML personnalisée)
-     */
     public function content(): Content
     {
         return new Content(
-            view: 'emails.contact_reply', // C'est le fichier qu'on va créer juste après
+            view: 'emails.contact_reply',
         );
     }
 

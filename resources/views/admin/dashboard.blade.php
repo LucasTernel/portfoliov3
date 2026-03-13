@@ -4,7 +4,7 @@
 
     <header class="admin-header">
         <div class="logo">
-            <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="Logo Lucas Ternel">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo Lucas Ternel">
         </div>
 
         <div class="contact-indicator">

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Éditer un projet - Lucas Ternel')
+
 @section('content')
 <style>
     /* CSS RESPONSIVE IDENTIQUE AUX AUTRES PAGES ADMIN */
@@ -17,7 +19,7 @@
     .delete-checkbox { position: absolute; top: -5px; right: -5px; accent-color: #ff4d4d; width: 20px; height: 20px; cursor: pointer; z-index: 2; }
 </style>
 
-<div class="admin-content-wrapper" style="padding: 40px; color: white; background: #0a0a0a; min-height: 100vh;">
+<div class="admin-content-wrapper" style="padding: 40px; color: white; min-height: 100vh;">
     
     <div class="admin-header-actions" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
         <h1 class="admin-page-title" style="color: #D6F32F; margin: 0;">Modifier : {{ $project->title }}</h1>
@@ -116,7 +118,7 @@
             </div>
 
             <div class="form-group" style="margin-bottom: 25px;">
-                <label style="display: block; color: #aaa; margin-bottom: 8px;">Vidéo Démo (URL)</label>
+                <label style="display: block; color: #aaa; margin-bottom: 8px;">Maquette Figma</label>
                 <input type="text" name="link_video" value="{{ old('link_video', $project->link_video) }}" 
                        style="width: 100%; background: #1a1a1a; border: 1px solid #444; color: white; padding: 12px; border-radius: 8px;">
             </div>
@@ -128,7 +130,7 @@
                 
                 @if($project->thumbnail)
                     <div style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;">
-                        <img src="{{ Vite::asset('resources/images/projects/' . $project->folder_name . '/' . $project->thumbnail) }}" 
+                        <img src="{{ asset('images/projects/' . $project->folder_name . '/' . $project->thumbnail) }}" 
                              style="width: 150px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid #444;">
                         
                         <label style="display: flex; align-items: center; gap: 8px; color: #ff4d4d; cursor: pointer;">
@@ -154,7 +156,7 @@
                         @foreach($project->gallery as $img)
                             <div class="img-delete-wrapper">
                                 <input type="checkbox" name="delete_gallery_images[]" value="{{ $img }}" class="delete-checkbox">
-                                <img src="{{ Vite::asset('resources/images/projects/' . $project->folder_name . '/' . $img) }}" 
+                                <img src="{{ asset('images/projects/' . $project->folder_name . '/' . $img) }}" 
                                      style="width: 100%; height: 80px; object-fit: cover; border-radius: 4px;">
                             </div>
                         @endforeach

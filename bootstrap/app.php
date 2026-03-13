@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Http\Request;
+use App\Http\Middleware\Google2FA;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -13,21 +14,20 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         
-    $middleware->web(append: [
-                \App\Http\Middleware\GlobalSettingsMiddleware::class,
-            ]);
+        $middleware->web(append: [
+            \App\Http\Middleware\GlobalSettingsMiddleware::class,
+        ]);
 
-
-    $middleware->redirectGuestsTo(function (Request $request) {
-        
-        // Si l'URL commence par "admin-lt", on redirige vers le login admin
-        if ($request->is('admin-lt*')) {
-            return route('admin.login');
-        }
-        
-        // Sinon, comportement par défaut (ou vers l'accueil si tu n'as pas d'espace membre)
-        return route('home'); 
+        $middleware->redirectGuestsTo(function (Request $request) {
+            if ($request->is('admin-lt*')) {
+                return route('admin.login');
+            }
+            return route('home'); 
         });
+
+        $middleware->alias([
+            '2fa' => \App\Http\Middleware\Google2FA::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

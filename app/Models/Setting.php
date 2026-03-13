@@ -12,13 +12,13 @@ class Setting extends Model
     'maintenance_ends_at',
     'is_available', 
     'ga_tracking_id',
-    'ga_property_id', // <--- AJOUTER ICI
+    'ga_property_id',
 ];
 
 protected $casts = [
     'maintenance_mode' => 'boolean',
     'is_available' => 'boolean',
     'maintenance_scheduled_at' => 'datetime',
-    'maintenance_ends_at' => 'datetime', // <--- Nouveau
+    'maintenance_ends_at' => 'datetime',
 ];
 }

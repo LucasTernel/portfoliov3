@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Expériences - Lucas Ternel')
+
+
 @section('content')
 
     <div class="xp-screen-wrapper">
@@ -30,7 +33,7 @@
                                     @php
                                         // On prépare la liste complète des URLs pour le JS
                                         $imageUrls = collect($xp->images)->map(function($img) use ($xp) {
-                                            return Vite::asset("resources/images/experiences/{$xp->folder_name}/{$img}");
+                                            return asset("images/experiences/{$xp->folder_name}/{$img}");
                                         });
                                     @endphp
 
@@ -39,7 +42,7 @@
                                              onclick="openLightbox(this)"
                                              data-index="{{ $index }}"
                                              data-images="{{ json_encode($imageUrls) }}"
-                                             style="background-image: url('{{ Vite::asset('resources/images/experiences/' . $xp->folder_name . '/' . $image) }}')">
+                                             style="background-image: url('{{ asset("images/experiences/{$xp->folder_name}/{$image}") }}')">
                                         </div>
                                     @endforeach
                                 </div>
@@ -51,78 +54,6 @@
             </div>
         </div>
     </div>
-
-    <div id="lightboxModal" class="lightbox-modal">
-        <span class="close-btn" onclick="closeLightbox()">&times;</span>
-        
-        <img class="lightbox-content" id="lightboxImage">
-        
-        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-        <a class="next" onclick="changeSlide(1)">&#10095;</a>
-
-        <div class="lightbox-dots-container" id="lightboxDots">
-            </div>
-    </div>
     
 @endsection
 
-<script>
-
-    let currentImages = []; 
-    let currentIndex = 0;   
-
-    // Ouvre la modale
-    function openLightbox(element) {
-        currentImages = JSON.parse(element.getAttribute('data-images'));
-        currentIndex = parseInt(element.getAttribute('data-index'));
-
-        document.getElementById('lightboxModal').style.display = "flex";
-        
-        // --- AJOUT ICI ---
-        // On bloque le scroll de la page principale
-        document.body.style.overflow = 'hidden'; 
-        
-        updateLightbox();
-    }
-
-    // Ferme la modale
-    function closeLightbox() {
-        document.getElementById('lightboxModal').style.display = "none";
-        
-        // --- AJOUT ICI ---
-        // On réactive le scroll de la page principale
-        document.body.style.overflow = ''; 
-    }
-
-    // Change l'image
-    function changeSlide(n) {
-        currentIndex += n;
-        if (currentIndex >= currentImages.length) currentIndex = 0;
-        if (currentIndex < 0) currentIndex = currentImages.length - 1;
-        updateLightbox();
-    }
-
-    // Aller à une image spécifique
-    function jumpToSlide(index) {
-        currentIndex = index;
-        updateLightbox();
-    }
-
-    // Met à jour l'image et les points
-    function updateLightbox() {
-        document.getElementById('lightboxImage').src = currentImages[currentIndex];
-
-        const dotsContainer = document.getElementById('lightboxDots');
-        dotsContainer.innerHTML = "";
-
-        currentImages.forEach((img, index) => {
-            let dot = document.createElement("span");
-            dot.className = "lightbox-dot";
-            if (index === currentIndex) {
-                dot.classList.add("active");
-            }
-            dot.onclick = function() { jumpToSlide(index); };
-            dotsContainer.appendChild(dot);
-        });
-    }
-</script>

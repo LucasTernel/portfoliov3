@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Paramètres du Site - Lucas Ternel')
+
+
 @section('content')
 <div class="admin-content-wrapper center-content">
     
